@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 EPAM SYSTEMS INC
+ * Copyright 2019 EPAM SYSTEMS INC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,6 +59,12 @@ class ATGGradleProject {
 
     File getProjectJarArchive() {
         return new File(project.libsDirName + File.separator + project.jar.archiveName as String)
+    }
+
+    List<File> getProjectSourceSetsOutputFiles() {
+        def outputFiles = []
+        project.sourceSets.each { outputFiles.addAll(it.output.files) }
+        return outputFiles
     }
 
     File getProjectResources() {
